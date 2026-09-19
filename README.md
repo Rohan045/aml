@@ -1,6 +1,6 @@
 # Sentinel AML
 
-Real-time anti-money-laundering transaction monitoring: ingest customer, account
+Real-time  anti-money-laundering transaction monitoring: ingest customer, account
 and transaction data, screen every transaction against a configurable rule set,
 raise risk-scored alerts with the evidence attached, and carry those alerts
 through a full investigation and SAR-filing workflow with an immutable audit
