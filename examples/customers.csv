@@ -1,0 +1,5 @@
+customer_id,first_name,last_name,date_of_birth,email,phone_number,city,country,occupation,annual_income,customer_since,customer_segment,kyc_status,risk_rating,is_politically_exposed
+EX_CUST_001,Rohit,Mehra,1982-03-14,rohit.mehra@example.com,+91-9812345601,Mumbai,IN,Jeweller,4200000.00,2018-04-02,PREMIUM,VERIFIED,MEDIUM,N
+EX_CUST_002,Farhan,Sheikh,1979-11-08,farhan.sheikh@example.com,+91-9812345602,Dubai,AE,Consultant,1800000.00,2020-01-15,SME,VERIFIED,MEDIUM,N
+EX_CUST_003,Vikram,Nair,1986-06-27,vikram.nair@example.com,+91-9812345603,Kochi,IN,Contractor,2100000.00,2019-09-30,SME,VERIFIED,LOW,N
+EX_CUST_004,Anita,Deshpande,1990-01-19,anita.deshpande@example.com,+91-9812345604,Pune,IN,Teacher,620000.00,2017-07-11,RETAIL,VERIFIED,LOW,N

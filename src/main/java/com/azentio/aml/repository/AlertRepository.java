@@ -52,7 +52,15 @@ public interface AlertRepository extends JpaRepository<Alert, Long> {
     // Analyst queue
     // ---------------------------------------------------------------------
 
-    /** Work queue: highest risk first, then oldest, so nothing starves at equal score. */
+    /**
+     * Work queue: highest risk first, then oldest, so nothing starves at equal score.
+     *
+     * <p>The customer and case are fetched in the same query. The queue projection masks the
+     * customer's name and shows the case number, and neither is reachable from a lazy proxy -
+     * with {@code open-in-view=false} the session is already closed by the time the controller
+     * maps the page, so a lazy load here is not a slow query, it is a 500.
+     */
+    @EntityGraph(attributePaths = {"customer", "amlCase"})
     @Query(
             """
             select a
@@ -63,22 +71,36 @@ public interface AlertRepository extends JpaRepository<Alert, Long> {
     Page<Alert> findQueue(
             @Param("statuses") Collection<AlertStatus> statuses, Pageable pageable);
 
+    @EntityGraph(attributePaths = {"customer", "amlCase"})
     Page<Alert> findByAssignedToAndStatusIn(
             String assignedTo, Collection<AlertStatus> statuses, Pageable pageable);
 
+    @EntityGraph(attributePaths = {"customer", "amlCase"})
     Page<Alert> findByCustomer_CustomerIdOrderByFirstDetectedAtDesc(
             String customerId, Pageable pageable);
 
+    @EntityGraph(attributePaths = {"customer", "amlCase"})
     Page<Alert> findByTypologyOrderByRiskScoreDesc(AmlTypology typology, Pageable pageable);
 
     /** Loads an alert with its full explanation payload in one query, for the detail view. */
-    @EntityGraph(attributePaths = {"triggeredRules", "evidence"})
+    @EntityGraph(attributePaths = {"triggeredRules", "evidence", "customer", "amlCase"})
     Optional<Alert> findWithDetailById(Long id);
+
+    /**
+     * Alert lookup by id with the associations the queue projection reads.
+     *
+     * <p>The workflow endpoints return the updated alert straight to the caller, so the entity
+     * outlives the service transaction that produced it. Loading the customer and case up front
+     * is what keeps that response serialisable.
+     */
+    @EntityGraph(attributePaths = {"customer", "amlCase"})
+    Optional<Alert> findWithCustomerById(Long id);
 
     // ---------------------------------------------------------------------
     // Case linkage
     // ---------------------------------------------------------------------
 
+    @EntityGraph(attributePaths = {"customer", "amlCase"})
     List<Alert> findByAmlCase_Id(Long caseId);
 
     @Query(

@@ -444,7 +444,7 @@ public class CaseService {
     @Transactional(readOnly = true)
     public AmlCase requireById(Long caseId) {
         return caseRepository
-                .findById(caseId)
+                .findWithCustomerById(caseId)
                 .orElseThrow(() -> NotFoundException.of("Case", caseId));
     }
 

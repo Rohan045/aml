@@ -181,7 +181,9 @@ public class AlertService {
 
     @Transactional(readOnly = true)
     public Alert requireById(Long id) {
-        return alertRepository.findById(id).orElseThrow(() -> NotFoundException.of("Alert", id));
+        return alertRepository
+                .findWithCustomerById(id)
+                .orElseThrow(() -> NotFoundException.of("Alert", id));
     }
 
     @Transactional(readOnly = true)
