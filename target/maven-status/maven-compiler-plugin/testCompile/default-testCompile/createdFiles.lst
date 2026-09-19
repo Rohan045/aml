@@ -1,0 +1,14 @@
+com\azentio\aml\detection\RiskScorerTest.class
+com\azentio\aml\detection\rule\DetectionRulesTest.class
+com\azentio\aml\IngestionToAlertPipelineTest$TestCsv.class
+com\azentio\aml\detection\rule\DetectionRulesTest$2.class
+com\azentio\aml\tools\SchemaExportTool.class
+com\azentio\aml\service\AlertServiceDedupeKeyTest.class
+com\azentio\aml\detection\rule\DetectionRulesTest$1.class
+com\azentio\aml\IngestionToAlertPipelineTest.class
+com\azentio\aml\IngestionToAlertPipelineTest$Builder.class
+com\azentio\aml\repository\DetectionQueryTest.class
+com\azentio\aml\domain\DomainModelMappingTest.class
+com\azentio\aml\AmlApplicationTests.class
+com\azentio\aml\detection\TestFixtures.class
+com\azentio\aml\detection\RollingWindowTest.class

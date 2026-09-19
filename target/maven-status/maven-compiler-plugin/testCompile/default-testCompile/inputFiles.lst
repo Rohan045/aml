@@ -1,0 +1,10 @@
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\AmlApplicationTests.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\detection\RiskScorerTest.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\detection\RollingWindowTest.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\detection\rule\DetectionRulesTest.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\detection\TestFixtures.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\domain\DomainModelMappingTest.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\IngestionToAlertPipelineTest.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\repository\DetectionQueryTest.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\service\AlertServiceDedupeKeyTest.java
+C:\Users\KIIT\Downloads\aml\aml\src\test\java\com\azentio\aml\tools\SchemaExportTool.java
