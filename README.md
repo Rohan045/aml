@@ -393,8 +393,9 @@ exercise that path.
 ## Testing
 
 ```bash
-./mvnw test                                        # everything
+./mvnw test                                        # everything (41 tests)
 ./mvnw test -Dtest='com.azentio.aml.detection.**'  # rules only
+./mvnw test -Dtest=IngestionToAlertPipelineTest    # end-to-end pipeline
 ```
 
 The detection tests cover every rule at its boundary — one case that must fire,
@@ -405,6 +406,18 @@ fires at 9,999.99 but not at 10,000.00 is worse than no rule at all.
 `RollingWindow`, `RiskScorer` and alert de-duplication key generation are tested
 directly, since all three are shared by every rule and a defect in any of them
 would be attributed to the wrong place.
+
+`IngestionToAlertPipelineTest` runs the whole chain in one go — CSV in, alerts
+out — and asserts that six typologies fire, that FX normalisation populated
+every row, that replaying the same file produces duplicates rather than new
+transactions, that re-sweeping aggregates into existing alerts rather than
+creating new ones, and that the clean control customers produced **no** alerts
+at all. That last assertion is the one that matters most: proving the rules stay
+quiet on ordinary behaviour is harder, and more valuable, than proving they
+fire on obvious behaviour.
+
+Tests run against H2 in PostgreSQL mode with the schema derived from the entity
+model, so `./mvnw test` needs no database and no network.
 
 ## Project layout
 
@@ -426,7 +439,9 @@ src/main/java/com/azentio/aml/
     error/        Problem-detail exception handling
 
 src/main/resources/db/migration/   Flyway: schema, reference data, demo users
-src/test/java/                     Rule, window, scoring and dedupe tests
+src/test/java/                     Rule, window, scoring, dedupe and
+                                   end-to-end pipeline tests
 tools/generate_seed_data.py        Synthetic dataset generator
+seed/                              Generated demo CSVs
 docs/data-model.md                 Entity-relationship reference
 ```
